@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/yungtchen/fetch-cache/issues"
   },
-  "homepage": "https://github.com/yungtchen/fetch-cache#readme"
+  "homepage": "https://github.com/yungtchen/fetch-cache#readme",
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "lodash": "^4.17.20",
+    "mobx": "^6.0.4"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
+  }
 }
