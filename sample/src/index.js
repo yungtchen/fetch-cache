@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import FetchCache from 'fetch-cache';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+function getUsers() {
+  const url = 'https://reqres.in/api/users?page=2';
+  const fc = new FetchCache();
+  fc.get(url).then((response) => {
+    const users = response.data.map((user) => {
+      return {
+        first: user.first_name,
+        last: user.last_name,
+        avatar: user.avatar,
+        email: user.email,
+      };
+    });
+    ReactDOM.render(<App users={users} />, document.getElementById('root'));
+  });
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+getUsers();

@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function App(props) {
+  const { users } = props;
+  const rows = users.map((user) => {
+    return (
+      <tr>
+        <td>
+          <img src={user.avatar} alt="avatar" />
+          <div>
+            {user.first} {user.last}
+          </div>
+        </td>
+        <td>{user.email}</td>
+      </tr>
+    );
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <table>
+      <th>User</th>
+      <th>Email</th>
+      {rows}
+    </table>
   );
 }
 
