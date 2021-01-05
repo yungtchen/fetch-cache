@@ -1,3 +1,5 @@
 sample/node_modules/
 sample/dist/
-node_modules
+sample/.eslintcache
+TODO
+node_modules 
