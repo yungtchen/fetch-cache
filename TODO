@@ -1,0 +1,26 @@
+add cache key count max to get api
+add payload max
+
+auth
+	- basic
+	- jwt 
+
+form upload
+multipart file upload
+adding headers
+add support for put, post, delete, options etc
+
+integrate apollo graphql?
+
+
+sample
+ multiple file uploads
+ submit form
+ get response
+ failure scenario
+ figure out how to eject CRA boiler plate
+
+fix navigation via nav and anchor
+use react router navigation?
+
+

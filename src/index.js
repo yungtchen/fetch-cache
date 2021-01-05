@@ -1,4 +1,12 @@
 const DEFAULT_TTL = 2000;
+const DEFAULT_OPTIONS = {
+  mode: 'cors',
+  cache: 'no-cache',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  redirect: 'follow',
+};
 export default class FetchCache {
   constructor(options = {}) {
     this.ttl = options.ttl || DEFAULT_TTL;
@@ -23,5 +31,12 @@ export default class FetchCache {
 
   async put(url, data) {}
 
-  async post(url, data) {}
+  post(url, data, options) {
+    const postOptions = {
+      method: 'POST',
+      body: JSON.stringify(data),
+    };
+    const payload = Object.assign(DEFAULT_OPTIONS, options, postOptions);
+    return fetch(url).then((response) => response.json());
+  }
 }
