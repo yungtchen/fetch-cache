@@ -37,6 +37,6 @@ export default class FetchCache {
       body: JSON.stringify(data),
     };
     const payload = Object.assign(DEFAULT_OPTIONS, options, postOptions);
-    return fetch(url).then((response) => response.json());
+    return fetch(url, payload).then((response) => response.json());
   }
 }
