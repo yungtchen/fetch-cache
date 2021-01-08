@@ -1,6 +1,6 @@
 {
   "name": "fetch-cache",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fetch client with local cache",
   "main": "src/index.js",
   "scripts": {
