@@ -20,7 +20,7 @@ function App(props) {
               <Link to="/users">Users</Link>
             </li>
             <li>
-              <Link to="/create">Create User</Link>
+              <Link to="/create">Create</Link>
             </li>
           </ul>
         </nav>
@@ -32,7 +32,7 @@ function App(props) {
             <Users users={users} />
           </Route>
           <Route path="/create">
-            <Create />
+            <Create showToast={false} />
           </Route>
           <Route path="/home">
             <Home />
