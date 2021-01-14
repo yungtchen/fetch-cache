@@ -1,5 +1,9 @@
 add cache key count max to get api
 add payload max
+error handling
+use config library to handle secrets for auth
+add header support
+clean up css
 
 auth
 	- basic
