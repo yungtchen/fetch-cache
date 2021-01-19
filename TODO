@@ -1,3 +1,4 @@
+backoff strategy https://advancedweb.hu/how-to-implement-an-exponential-backoff-retry-strategy-in-javascript/
 add tests
 add cache key count max to get api
 add payload max
