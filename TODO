@@ -1,5 +1,6 @@
 backoff strategy https://advancedweb.hu/how-to-implement-an-exponential-backoff-retry-strategy-in-javascript/
 add tests
+use https://github.com/typicode/json-server for test server
 add cache key count max to get api
 add payload max
 error handling
