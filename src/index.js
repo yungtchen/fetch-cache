@@ -29,9 +29,9 @@ export default class FetchCache {
       });
   }
 
-  apiDelegate(method, data, userOptions = {}) {
+  apiDelegate(url, method, data, userOptions = {}) {
     const baseOptions = { method };
-    if(data) {
+    if (data) {
       baseOptions.body = JSON.stringify(data);
     }
     const payload = Object.assign(DEFAULT_OPTIONS, userOptions, baseOptions);
@@ -39,10 +39,18 @@ export default class FetchCache {
   }
 
   async put(url, data) {
-    return apiDelegate('PUT', data);
+    return apiDelegate(url, 'PUT', data);
   }
 
-  post(url, data, userOptions) {
-    return apiDelegate('POST', data, userOptions);
+  async put(url, data) {
+    return apiDelegate(url, 'PATCH', data);
+  }
+
+  async post(url, data, userOptions) {
+    return apiDelegate(url, 'POST', data, userOptions);
+  }
+
+  async delete(url, data, userOptions) {
+    return apiDelegate(url, 'DELETE', data, userOptions);
   }
 }
