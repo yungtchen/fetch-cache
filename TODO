@@ -1,3 +1,4 @@
+replace native browser fetch with whatwg-fetch for core library
 support Cache-Control  header with override option https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching
 backoff strategy https://advancedweb.hu/how-to-implement-an-exponential-backoff-retry-strategy-in-javascript/
 add tests
