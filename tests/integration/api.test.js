@@ -1,6 +1,6 @@
 import FetchCache from '../../src/index';
 // using the global isomorphic-fetch for browser and node support
-require('isomorphic-fetch');
+import { fetch } from 'whatwg-fetch';
 
 describe('fetch-cache http methods', () => {
   it('get successfully', async () => {
