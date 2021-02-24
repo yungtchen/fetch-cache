@@ -1,3 +1,5 @@
+import { fetch } from 'whatwg-fetch';
+
 const DEFAULT_TTL = 2000;
 const DEFAULT_OPTIONS = {
   mode: 'cors',
@@ -7,6 +9,16 @@ const DEFAULT_OPTIONS = {
   },
   redirect: 'follow',
 };
+
+function apiDelegate(url, method, data, userOptions = {}) {
+  const baseOptions = { method };
+  if (data) {
+    baseOptions.body = JSON.stringify(data);
+  }
+  const payload = Object.assign(DEFAULT_OPTIONS, userOptions, baseOptions);
+  return fetch(url, payload).then((response) => response.json());
+}
+
 export default class FetchCache {
   constructor(options = {}) {
     this.ttl = options.ttl || DEFAULT_TTL;
@@ -27,15 +39,6 @@ export default class FetchCache {
           return this.cache[url].data;
         }
       });
-  }
-
-  apiDelegate(url, method, data, userOptions = {}) {
-    const baseOptions = { method };
-    if (data) {
-      baseOptions.body = JSON.stringify(data);
-    }
-    const payload = Object.assign(DEFAULT_OPTIONS, userOptions, baseOptions);
-    return fetch(url, payload).then((response) => response.json());
   }
 
   async put(url, data) {
