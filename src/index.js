@@ -54,6 +54,6 @@ export default class FetchCache {
   }
 
   async delete(url, data, userOptions) {
-    return apiDelegate(url, 'DELETE', data, userOptions);
+    return fetch(url).then((response) => response.statusText);
   }
 }
