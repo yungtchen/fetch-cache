@@ -12,6 +12,10 @@ use config library to handle secrets for auth
 add header support
 clean up css
 
+use browser cache
+	https://github.com/GoogleChrome/samples/blob/gh-pages/service-worker/selective-caching/service-worker.js
+	https://developer.mozilla.org/en-US/docs/Web/API/Cache#examples
+
 auth
 	- basic
 	- jwt 
