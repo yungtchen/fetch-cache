@@ -1,6 +1,6 @@
 import FetchCache from '../../src/index';
 // using the global isomorphic-fetch for browser and node support
-import { fetch } from 'whatwg-fetch';
+import 'whatwg-fetch';
 
 describe('fetch-cache http methods', () => {
   it('get successfully', async () => {
@@ -53,5 +53,20 @@ describe('fetch-cache http methods', () => {
 });
 
 describe('fetch-cache cache hits', () => {
-  it('get successfully cached', () => {});
+  it('get successfully cached', async () => {
+    const url = 'https://reqres.in/api/users?page=1';
+    const fc = new FetchCache({ ttl: 3000 });
+    const spy = jest.spyOn(window, 'fetch');
+    await fc.get(url);
+    const resp = await fc.get(url);
+    expect(spy).toHaveBeenCalledTimes(1);
+    await new Promise((resolve) => {
+      setTimeout(async () => {
+        await fc.get(url);
+        resolve();
+      }, 4000);
+    });
+
+    expect(spy).toHaveBeenCalledTimes(2);
+  });
 });

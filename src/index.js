@@ -1,6 +1,6 @@
-import { fetch } from 'whatwg-fetch';
+import 'whatwg-fetch';
 
-const DEFAULT_TTL = 2000;
+const DEFAULT_TTL = 4000;
 const DEFAULT_OPTIONS = {
   mode: 'cors',
   cache: 'no-cache',
@@ -19,6 +19,9 @@ function apiDelegate(url, method, data, userOptions = {}) {
   return fetch(url, payload).then((response) => response.json());
 }
 
+function isExpired(timestamp, expectedTtl) {
+  return Date.now() - timestamp > expectedTtl;
+}
 export default class FetchCache {
   constructor(options = {}) {
     this.ttl = options.ttl || DEFAULT_TTL;
@@ -28,16 +31,17 @@ export default class FetchCache {
   get(url, userOptions) {
     const defaultOptions = {};
     const baseOptions = Object.assign(defaultOptions, userOptions);
+    const cacheHit = this.cache[url];
+    if (cacheHit && !isExpired(cacheHit.timestamp, this.ttl)) {
+      return cacheHit.data;
+    }
+
     return fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        if (!this.cache[url] || Date.now() - this.cache[url].ttl > this.ttl) {
-          const ttl = Date.now() + this.ttl;
-          this.cache[url] = { ttl, data };
-          return data;
-        } else {
-          return this.cache[url].data;
-        }
+        const timestamp = Date.now();
+        this.cache[url] = { timestamp, data };
+        return data;
       });
   }
 
