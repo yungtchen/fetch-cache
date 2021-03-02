@@ -1,3 +1,4 @@
+replace fetch with axios?
 update the api to have status and body
 remove sample application ?
 replace native browser fetch with whatwg-fetch for core library
